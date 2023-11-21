@@ -17,7 +17,7 @@ enabled.
    for the entry for `TUTORIAL_DB.DATA_SCHEMA.TUTORIAL_REPOSITORY`.
    Note the value for `repository_url`.
 3. In the main directory of this repo, execute 
-   `bash ./configure.sh`. Enter the URL of the repository that you
+   `make configure`. Enter the URL of the repository that you
    noted in step 2 for the repository. Enter the name of the warehouse
    you set up in step 1 (if you followed the directions, it would be
    `tutorial_warehouse`).

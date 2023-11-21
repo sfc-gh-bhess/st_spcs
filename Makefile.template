@@ -4,6 +4,9 @@ DOCKER_IMAGE=st_spcs
 help:           ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
+configure:  ## Initial project setup
+	bash ./configure.sh
+
 build_local:  ## Build Docker image for local environment
 	docker build -t $(DOCKER_IMAGE)_local .
 
