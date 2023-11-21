@@ -1,0 +1,7 @@
+streamlit
+pyarrow==10.0.1
+snowflake-connector-python==3.2.1
+snowflake-snowpark-python
+pandas
+numpy
+datetime

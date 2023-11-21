@@ -1,0 +1,10 @@
+spec:
+  containers:
+    - name: streamlit
+      image: sfsenorthamerica-bmh-prod3.registry.snowflakecomputing.com/sandbox/idea/repo1/st_spcs
+      env:
+        SNOWFLAKE_WAREHOUSE: wh_xs
+  endpoints:
+    - name: streamlit
+      port: 8080
+      public: true

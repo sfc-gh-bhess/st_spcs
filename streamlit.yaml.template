@@ -1,0 +1,10 @@
+spec:
+  containers:
+    - name: streamlit
+      image: <<repository_url>>/st_spcs
+      env:
+        SNOWFLAKE_WAREHOUSE: <<warehouse_name>>
+  endpoints:
+    - name: streamlit
+      port: 8080
+      public: true
