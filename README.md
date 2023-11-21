@@ -45,3 +45,21 @@ enabled.
 10. Navigate to the endpoint and authenticate. Note, you must use a user whose
    default role is _not_ `ACCOUNTADMIN`, `SECURITYADMIN`, or `ORGADMIN`.
 11. Enjoy!
+
+
+## Local Testing
+This Streamlit can be tested running locally. To do that, build the
+image for your local machine with `make build_local`.
+
+In order to run the Streamlit in the container, we need to set some 
+environment variables in our terminal session before running the 
+container. The variables to set are:
+* `SNOWFLAKE_ACCOUNT` - the account locator for the Snowflake account
+* `SNOWFLAKE_USER` - the Snowflake username to use
+* `SNOWFLAKE_PASSWORD` - the password for the Snowflake user
+* `SNOWFLAKE_WAREHOUSE` - the warehouse to use
+* `SNOWFLAKE_DATABASE` - the database to set as the current database (does not really matter that much what this is set to)
+* `SNOWFLAKE_SCHEMA` - the schema in the database to set as the current schema (does not really matter that much what this is set to)
+
+Once those have been set, run the Streamlit container with `make run`. Navigate
+to `http://localhost:8080`.
