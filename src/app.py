@@ -4,6 +4,9 @@ from spcs_helpers.connection import session
 from snowflake.snowpark import Session
 from snowflake.snowpark import functions as f
 
+from streamlit.web.server.websocket_headers import _get_websocket_headers
+user = _get_websocket_headers().get("Sf-Context-Current-User") or "Visitor"
+
 @st.cache_resource
 def connect_to_snowflake():
     return session()
@@ -19,6 +22,7 @@ def top_clerks(_sess: Session, begin, end, topn):
                 .limit(topn) \
                 .to_pandas()
 
+st.sidebar.header(f"Hello, {user}")
 st.title("Top Clerks")
 
 c1,c2 = st.columns(2)

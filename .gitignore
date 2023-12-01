@@ -2,4 +2,4 @@
 .env
 __pycache__
 Makefile
-st_spcs.yaml
+streamlit.yaml
