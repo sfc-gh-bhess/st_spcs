@@ -18,7 +18,7 @@ def top_clerks(_sess: Session, begin, end, topn):
                 .filter(f.col('O_ORDERDATE') <= end) \
                 .group_by(f.col('O_CLERK')) \
                 .agg(f.sum(f.col('O_TOTALPRICE')).as_('CLERK_TOTAL')) \
-                .order_by(f.col('CLERK_TOTAL')) \
+                .order_by(f.col('CLERK_TOTAL').desc()) \
                 .limit(topn) \
                 .to_pandas()
 
