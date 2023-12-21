@@ -27,16 +27,23 @@ enabled.
       repository by running `make login` and entering your credentials.
    2. Make the Docker image by running `make build`.
    3. Push the image to the repository by running `make push_docker`
-5. Upload the `streamlit.yaml` to the stage you created in step 1. 
-   If you followed those steps, the stage should be `@TUTORIAL_DB.DATA_SCHEMA.TUTORIAL_STAGE`. You can use SnowSQL, Snowsight, or any other method
-   to `PUT` the file to the Stage.
-6. Create the service by executing
-   ```
-   CREATE SERVICE st_spcs
-     IN COMPUTE POOL tutorial_compute_pool
-     FROM @tutorial_db.data_schema.tutorial_stage
-     SPEC = 'streamlit.yaml';
-   ```
+5. Create the service by executing the DDL. You can get this DDL
+   by running `make ddl`:
+```
+CREATE SERVICE st_spcs
+  IN COMPUTE POOL  tutorial_compute_pool
+  FROM SPECIFICATION $$
+spec:
+  containers:
+    - name: streamlit
+      image: sfsenorthamerica-bmh-prod3.registry.snowflakecomputing.com/tutorial_db/data_schema/tutorial_repository/st_spcs
+      env:
+        SNOWFLAKE_WAREHOUSE: wh_xs
+  endpoints:
+    - name: streamlit
+      port: 8080
+      public: true  $$;
+```
 7. See that the service has started by executing `SHOW SERVICES IN COMPUTE POOL tutorial_compute_pool` and `SELECT system$get_service_status('st_spcs')`.
 8. Find the public endpoint for the service by executing `SHOW ENDPOINTS IN SERVICE st_spcs`.
 9. Grant permissions for folks to visit the Streamlit. You do this by granting 

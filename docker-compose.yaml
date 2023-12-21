@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    streamlit:
+        build: .
+        ports:
+            - 8080:8080
+        environment:
+          - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
+          - SNOWFLAKE_USER=${SNOWFLAKE_USER}
+          - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
+          - SNOWFLAKE_DATABASE=${SNOWFLAKE_DATABASE}
+          - SNOWFLAKE_SCHEMA=${SNOWFLAKE_SCHEMA}
+          - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
