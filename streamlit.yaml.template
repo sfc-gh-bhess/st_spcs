@@ -6,5 +6,5 @@ spec:
         SNOWFLAKE_WAREHOUSE: <<warehouse_name>>
   endpoints:
     - name: streamlit
-      port: 8080
+      port: 8501
       public: true

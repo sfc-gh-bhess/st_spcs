@@ -2,30 +2,30 @@ SNOWFLAKE_REPO?=<<repository_url>>
 DOCKER_IMAGE=st_spcs
 SNOWFLAKE_COMPUTE_POOL?=tutorial_compute_pool
 
-help:           ## Show this help.
+help:          ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-build_local:  ## Build Docker image for local environment
+build_local:   ## Build Docker image for local environment
 	docker compose build
 
-run:  ## Run local Docker image - make sure to set environment variables properly
+run:           ## Run local Docker image - make sure to set environment variables properly
 	docker compose up
 
 all: login build push_docker
 
-login:  ## Login to Snowflake Docker repo
+login:         ## Login to Snowflake Docker repo
 	docker login $(SNOWFLAKE_REPO)
 
-build:  ## Build Docker image for Snowpark Container Services
+build:         ## Build Docker image for Snowpark Container Services
 	docker build --platform linux/amd64 -t $(DOCKER_IMAGE) .
 
-push_docker:  ## Push Docker image to Snowpark Container Services
+push_docker:   ## Push Docker image to Snowpark Container Services
 	docker tag $(DOCKER_IMAGE) $(SNOWFLAKE_REPO)/$(DOCKER_IMAGE)
 	docker push $(SNOWFLAKE_REPO)/$(DOCKER_IMAGE)
 
-ddl: ## Prints DDL statement for Service
+ddl:           ## Prints DDL statement for Service
 	@printf "CREATE SERVICE st_spcs\n"
 	@printf "  IN COMPUTE POOL  $(SNOWFLAKE_COMPUTE_POOL)\n"
 	@printf "  FROM SPECIFICATION \$$\$$\n"
 	@cat streamlit.yaml
-	@printf "  \$$\$$;\n"
+	@printf "\n  \$$\$$;\n"

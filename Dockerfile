@@ -1,5 +1,5 @@
 FROM python:3.10
-EXPOSE 8080
+EXPOSE 8501
 WORKDIR /app
 COPY src/. .
 RUN pip3 install -r requirements.txt

@@ -12,12 +12,12 @@ This example requires importing the `SNOWFLAKE_SAMPLE_DATA`
 data share, and an account with Snowpark Container Services
 enabled.
 
-1. Follow the "Common Setup" [here](https://docs.snowflake.com/en/LIMITEDACCESS/snowpark-containers/tutorials/common-setup)
+1. Follow the "Common Setup" [here](https://docs.snowflake.com/developer-guide/snowpark-container-services/tutorials/tutorial-1)
 2. In a SQL Worksheet, execute `SHOW IMAGE REPOSITORIES` and look
    for the entry for `TUTORIAL_DB.DATA_SCHEMA.TUTORIAL_REPOSITORY`.
    Note the value for `repository_url`.
 3. In the main directory of this repo, execute 
-   `make configure`. Enter the URL of the repository that you
+   `./configure.sh`. Enter the URL of the repository that you
    noted in step 2 for the repository. Enter the name of the warehouse
    you set up in step 1 (if you followed the directions, it would be
    `tutorial_warehouse`).
@@ -36,12 +36,12 @@ CREATE SERVICE st_spcs
 spec:
   containers:
     - name: streamlit
-      image: sfsenorthamerica-bmh-prod3.registry.snowflakecomputing.com/tutorial_db/data_schema/tutorial_repository/st_spcs
+      image: <REPO_URL>>/st_spcs
       env:
-        SNOWFLAKE_WAREHOUSE: wh_xs
+        SNOWFLAKE_WAREHOUSE: <WAREHOUSE>
   endpoints:
     - name: streamlit
-      port: 8080
+      port: 8501
       public: true  $$;
 ```
 7. See that the service has started by executing `SHOW SERVICES IN COMPUTE POOL tutorial_compute_pool` and `SELECT system$get_service_status('st_spcs')`.
@@ -49,8 +49,7 @@ spec:
 9. Grant permissions for folks to visit the Streamlit. You do this by granting 
    `USAGE` on the service: `GRANT USAGE ON SERVICE st_spcs TO ROLE some_role`, 
    where you specify the role in place of `some_role`.
-10. Navigate to the endpoint and authenticate. Note, you must use a user whose
-   default role is _not_ `ACCOUNTADMIN`, `SECURITYADMIN`, or `ORGADMIN`.
+10. Navigate to the endpoint and authenticate.
 11. Enjoy!
 
 
