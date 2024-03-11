@@ -68,4 +68,4 @@ container. The variables to set are:
 * `SNOWFLAKE_SCHEMA` - the schema in the database to set as the current schema (does not really matter that much what this is set to)
 
 Once those have been set, run the Streamlit container with `make run`. Navigate
-to `http://localhost:8080`.
+to `http://localhost:8501`.
