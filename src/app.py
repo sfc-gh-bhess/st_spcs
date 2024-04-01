@@ -18,7 +18,7 @@ session = connect_to_snowflake()
 # Fetch data from Snowflake
 @st.cache_data
 def top_clerks(_sess: Session, begin, end, topn):
-    return session.table('snowflake_sample_data.tpch_sf10.orders') \
+    return _sess.table('snowflake_sample_data.tpch_sf10.orders') \
                 .filter(f.col('O_ORDERDATE') >= begin) \
                 .filter(f.col('O_ORDERDATE') <= end) \
                 .group_by(f.col('O_CLERK')) \
