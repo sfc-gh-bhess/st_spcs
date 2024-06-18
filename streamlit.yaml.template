@@ -8,3 +8,7 @@ spec:
     - name: streamlit
       port: 8501
       public: true
+serviceRoles:
+- name: app
+  endpoints:
+  - streamlit

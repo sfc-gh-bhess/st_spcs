@@ -47,7 +47,7 @@ spec:
 7. See that the service has started by executing `SHOW SERVICES IN COMPUTE POOL tutorial_compute_pool` and `SELECT system$get_service_status('st_spcs')`.
 8. Find the public endpoint for the service by executing `SHOW ENDPOINTS IN SERVICE st_spcs`.
 9. Grant permissions for folks to visit the Streamlit. You do this by granting 
-   `USAGE` on the service: `GRANT USAGE ON SERVICE st_spcs TO ROLE some_role`, 
+   the SERVICE ROLE: `GRANT SERVICE ROLE st_spcs!app TO ROLE some_role`, 
    where you specify the role in place of `some_role`.
 10. Navigate to the endpoint and authenticate.
 11. Enjoy!
